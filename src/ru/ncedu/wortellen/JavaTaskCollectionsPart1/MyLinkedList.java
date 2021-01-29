@@ -1,10 +1,8 @@
 package ru.ncedu.wortellen.JavaTaskCollectionsPart1;
 
 
-import java.util.Arrays;
+
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class MyLinkedList<E> implements ILinkedList<E>{
@@ -120,13 +118,7 @@ public class MyLinkedList<E> implements ILinkedList<E>{
         return size;
     }
 
-    public Object[] toArray() {
-        Object[] result = new Object[size];
-        int i = 0;
-        for (Node<E> x = head; x != null; x = x.nextNode)
-            result[i++] = x.element;
-        return result;
-    }
+
 
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
