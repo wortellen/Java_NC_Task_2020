@@ -1,13 +1,23 @@
 package ru.ncedu.wortellen.JavaTaskCollectionsPart1;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) throws DataNullException, IncorrectIndexException {
-        ILinkedList<Integer> list = new MyLinkedList<>();
-        list.add(3);
-        list.remove(0);
-        System.out.println(list.toString());
+        ILinkedList<String> list = new MyLinkedList<>();
+        list.add("xe2w");
+        list.add("jd342");
+        list.add("qwe32");
+        list.add("qwe32");
+        list.add("qwe32");
+        list.add("qwe32");
+        list.add("qwe32");
+        list.add("qwe32");
+        String[] array = list.toArray(new String[0]);
+        for (String i:array) {
+            System.out.println(i);
+        }
         /*//добавление в конец, set аналогично, не совсем понял, для чего этот метод
         list.add(3);
         list.add(82);

@@ -1,7 +1,10 @@
 package ru.ncedu.wortellen.JavaTaskCollectionsPart1;
 
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class MyLinkedList<E> implements ILinkedList<E>{
@@ -11,7 +14,7 @@ public class MyLinkedList<E> implements ILinkedList<E>{
 
     public void add(E element) throws DataNullException {
         if(element==null)
-            throw new DataNullException();
+            throw new DataNullException("Data is Null");
         Node<E> node =new Node<>(element);
         if(head==null){
             head=node;
@@ -24,9 +27,9 @@ public class MyLinkedList<E> implements ILinkedList<E>{
     }
     public void add(int index,E element) throws IncorrectIndexException, DataNullException {
         if(element==null)
-            throw new DataNullException();
+            throw new DataNullException("Data is Null");
         if (index > size) {
-            throw new IncorrectIndexException();
+            throw new IncorrectIndexException("Error. INDEX>SIZE");
         }
         if ((index == 0 && size == 0) || index == size) {
             add(element);
@@ -52,7 +55,7 @@ public class MyLinkedList<E> implements ILinkedList<E>{
     }
     public E get(int index) throws IncorrectIndexException {
         if (index > size) {
-            throw new IncorrectIndexException();
+            throw new IncorrectIndexException("Error. INDEX>SIZE");
         }
         if(index==size)
             return tail.getElement();
@@ -64,7 +67,7 @@ public class MyLinkedList<E> implements ILinkedList<E>{
     }
     public void remove (int index) throws IncorrectIndexException {
         if (index > size) {
-            throw new IncorrectIndexException();
+            throw new IncorrectIndexException("Error. INDEX>SIZE");
         }
         if(index==0) {
             head.setNextNode(head.getNextNode());
@@ -91,9 +94,9 @@ public class MyLinkedList<E> implements ILinkedList<E>{
     }
     public E set(int index, E element) throws IncorrectIndexException, DataNullException {
         if(element==null)
-            throw new DataNullException();
+            throw new DataNullException("Data is Null");
         if (index > size) {
-            throw new IncorrectIndexException();
+            throw new IncorrectIndexException("Error. INDEX>SIZE");
         }
         if ((index == 0 && size == 0) || index == size) {
             add(element);
@@ -116,11 +119,28 @@ public class MyLinkedList<E> implements ILinkedList<E>{
     public int size(){
         return size;
     }
-    //не знаю, как переопределить
-    @Override
-    public E[] toArray(){
 
-        return null;
+    public Object[] toArray() {
+        Object[] result = new Object[size];
+        int i = 0;
+        for (Node<E> x = head; x != null; x = x.nextNode)
+            result[i++] = x.element;
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T[] toArray(T[] a) {
+        if (a.length < size)
+            a = (T[])java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size);
+        int i = 0;
+        Object[] result = a;
+        for (Node<E> x = head; x != null; x = x.nextNode)
+            result[i++] = x.element;
+
+        if (a.length > size)
+            a[size] = null;
+        return a;
     }
 
     public String toString(){

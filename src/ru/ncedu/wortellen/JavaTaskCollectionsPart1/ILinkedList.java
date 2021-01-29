@@ -8,6 +8,6 @@ public interface ILinkedList<E> extends Iterable{
     void remove (int index) throws IncorrectIndexException;
     E set(int index, E element) throws IncorrectIndexException, DataNullException;
     int size();
-    E[] toArray();
+    <T> T[] toArray(T[] a);
     String toString();
 }
